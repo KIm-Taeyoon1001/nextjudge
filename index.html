@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#0b1018">
+  <meta name="description" content="NEXTJUDGE — a bilingual static problem explorer and local code drafting demo. No server judging.">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <title>NEXTJUDGE · Static demo</title>
+  <link rel="icon" href="./icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./styles.css">
+  <link rel="stylesheet" href="./demo.css">
+  <script type="module" src="./app.js"></script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content / 본문 바로가기</a>
+  <header>
+    <a class="brand" href="#" aria-label="NEXTJUDGE home"><span class="brand-icon">N</span>NEXT<span>JUDGE</span><small>DEMO</small></a>
+    <nav aria-label="Main"><a href="#" id="explore-nav">문제 탐색</a><a href="#about" id="about-nav">데모 안내</a></nav>
+    <button class="language" id="locale" aria-label="Switch language / 언어 변경">◎ EN</button>
+  </header>
+  <aside class="demo-banner" aria-label="Static demo notice"><strong>STATIC DEMO · 정적 데모</strong><span>서버 채점 없음 · No server judging</span><span>제출·통계 없음 · No submission records or statistics</span></aside>
+  <main id="main" tabindex="-1"></main>
+  <footer><span class="brand footer-brand">NEXT<span>JUDGE</span></span><span>Small steps. Real breakthroughs.</span><span>STATIC DEMO · 한국어 / English</span></footer>
+  <noscript><p class="noscript">이 데모는 JavaScript가 필요합니다. / Enable JavaScript to explore this static demo. No code is executed or submitted.</p></noscript>
+</body>
+</html>
