@@ -3,8 +3,9 @@ import { problems } from './problems.js';
 const $ = (selector) => document.querySelector(selector);
 const memory = new Map();
 const storage = {
-  read(key) { if(memory.has(key)) return memory.get(key); try { return localStorage.getItem(`nextjudge:static-demo:${key}`); } catch { return null; } },
-  write(key, value) { memory.set(key,value); try { localStorage.setItem(`nextjudge:static-demo:${key}`, value); return true; } catch { return false; } }
+  unavailable: false,
+  read(key) { if(memory.has(key)) return memory.get(key); try { return localStorage.getItem(`nextjudge:static-demo:${key}`); } catch { this.unavailable=true; return null; } },
+  write(key, value) { memory.set(key,value); try { localStorage.setItem(`nextjudge:static-demo:${key}`, value); return true; } catch { this.unavailable=true; return false; } }
 };
 let locale = storage.read('locale') === 'en' ? 'en' : 'ko';
 const filters = { search: '', difficulty: '', tag: '', sort: 'id-asc', bookmarked: false };
@@ -54,6 +55,7 @@ function renderEditor(p) {
   $('#code').value=storage.read(`draft:${p.id}`) ?? starter();
   $('#custom-input').value=storage.read(`input:${p.id}`) ?? p.samples[0].input;
   let hasEdits = storage.read(`draft:${p.id}`) !== null;
+  if(storage.unavailable) $('#draft-state').textContent=`! ${t.unsaved}`;
   const save = (key,value) => {const ok=storage.write(key,value); $('#draft-state').textContent=`${ok?'●':'!'} ${ok?t.saved:t.unsaved}`;};
   $('#code').addEventListener('input', e=>{hasEdits=true;save(`draft:${p.id}`,e.target.value);});
   $('#custom-input').addEventListener('input', e=>save(`input:${p.id}`,e.target.value));
